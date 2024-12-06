@@ -90,7 +90,7 @@
 
 // 2
 
-import Chart from "chart.js/auto";
+import Chart from "./chart.js/auto";
 
 const ctx = document.getElementById("sales-chart");
 
