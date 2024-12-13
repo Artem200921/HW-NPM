@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
+    <!-- Dz 5 -->
     <!-- 1 -->
     <!-- <div id="wrap">
       <img src="./src/images/cat-wizard.gif" alt="" />
@@ -23,7 +24,22 @@
     </div>
     <p id="key">Натисніть на L - щоб підійти та почати розмову</p> -->
     <!-- 2 -->
-    <canvas id="sales-chart"></canvas>
+    <!-- <canvas id="sales-chart"></canvas> -->
+    <!-- Dz 6 -->
+    <div class="container">
+      <form action="#submit" id="form">
+        <input type="text" placeholder="Введіть ім'я" id="input-name" />
+        <input
+          type="email"
+          placeholder="Введіть електронну адресу"
+          id="input-email"
+        />
+        <button type="submit" id="submit">Відправити данні</button>
+      </form>
+      <div id="success-message" class="hidden">
+        Your feedback has been sent successfully!
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.js"></script>
     <script src="src/main.js" type="module"></script>
   </body>
