@@ -26,7 +26,7 @@
     <!-- 2 -->
     <!-- <canvas id="sales-chart"></canvas> -->
     <!-- Dz 6 -->
-    <div class="container">
+    <!-- <div class="container">
       <form action="#submit" id="form">
         <input type="text" placeholder="Введіть ім'я" id="input-name" />
         <input
@@ -39,6 +39,27 @@
       <div id="success-message" class="hidden">
         Your feedback has been sent successfully!
       </div>
+    </div> -->
+    <!-- DZ 8 -->
+    <div class="container">
+      <h1>Студентський менеджер</h1>
+      <form id="studentForm">
+        <input type="text" id="name" placeholder="Ім'я" required />
+        <input type="text" id="surname" placeholder="Прізвище" required />
+        <input type="number" id="age" placeholder="Вік" required />
+        <input type="text" id="course" placeholder="Курс" required />
+        <input type="text" id="faculty" placeholder="Факультет" required />
+        <input
+          type="text"
+          id="subjects"
+          placeholder="Курси (через кому)"
+          required
+        />
+        <button type="submit">Додати студента</button>
+      </form>
+      <h2>Список студентів</h2>
+      <ul id="studentsList">
+      </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.js"></script>
     <script src="src/main.js" type="module"></script>

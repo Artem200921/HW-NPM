@@ -218,16 +218,130 @@
 
 // Dz 6
 
-import { saveFormData, formData } from "./modules/handler.js";
+// import { saveFormData, formData } from "./modules/handler.js";
 
-document.getElementById("form").addEventListener("submit", function (event) {
-  event.preventDefault();
-  const name = document.getElementById("input-name").value;
-  const email = document.getElementById("input-email").value;
+// document.getElementById("form").addEventListener("submit", function (event) {
+//   event.preventDefault();
+//   const name = document.getElementById("input-name").value;
+//   const email = document.getElementById("input-email").value;
 
-  saveFormData(name, email);
+//   saveFormData(name, email);
 
-  console.log(formData);
+//   console.log(formData);
 
-  document.getElementById("success-message").classList.remove("hidden");
+//   document.getElementById("success-message").classList.remove("hidden");
+// });
+
+// DZ 7
+
+// import SongsGallary from "./templates/song.handlebars";
+
+// import items from "./songs.json";
+
+// const list = document.querySelector(".gallery");
+// const layout = items;
+
+// console.log(layout)
+// list.innerHTML = layout;
+
+// DZ 8
+
+document.addEventListener("DOMContentLoaded", () => {
+  const studentForm = document.getElementById("studentForm");
+  const studentsList = document.getElementById("studentsList");
+  const students = [];
+
+  studentForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const surname = document.getElementById("surname").value;
+    const age = document.getElementById("age").value;
+    const course = document.getElementById("course").value;
+    const faculty = document.getElementById("faculty").value;
+    const subjects = document.getElementById("subjects").value.split(",");
+
+    const student = { name, surname, age, course, faculty, subjects };
+    students.push(student);
+    saveStudentsToFile();
+    displayStudents();
+    studentForm.reset();
+  });
+
+  function saveStudentsToFile() {
+    localStorage.setItem("students", JSON.stringify(students));
+  }
+
+  function loadStudentsFromFile() {
+    const studentsJSON = localStorage.getItem("students");
+    if (studentsJSON) {
+      students.push(...JSON.parse(studentsJSON));
+      displayStudents();
+    }
+  }
+
+  function displayStudents() {
+    studentsList.innerHTML = "";
+    students.forEach((student, index) => {
+      const listItem = document.createElement("li");
+      const studentInfo = document.createElement("div");
+      studentInfo.textContent = `${student.name} ${student.surname}, ${
+        student.age
+      } років, курс: ${student.course}, факультет: ${
+        student.faculty
+      }, курси: ${student.subjects.join(", ")}`;
+      listItem.appendChild(studentInfo);
+
+      const editButton = document.createElement("button");
+      editButton.className = "edit";
+      editButton.textContent = "Редагувати";
+      editButton.onclick = () => editStudent(index);
+      listItem.appendChild(editButton);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.className = "delete";
+      deleteButton.textContent = "Видалити";
+      deleteButton.onclick = () => deleteStudent(index);
+      listItem.appendChild(deleteButton);
+
+      studentsList.appendChild(listItem);
+    });
+  }
+
+  function editStudent(index) {
+    const student = students[index];
+    document.getElementById("name").value = student.name;
+    document.getElementById("surname").value = student.surname;
+    document.getElementById("age").value = student.age;
+    document.getElementById("course").value = student.course;
+    document.getElementById("faculty").value = student.faculty;
+    document.getElementById("subjects").value = student.subjects.join(", ");
+    studentForm.onsubmit = (e) => {
+      e.preventDefault();
+      updateStudent(index);
+    };
+  }
+
+  function updateStudent(index) {
+    students[index].name = document.getElementById("name").value;
+    students[index].surname = document.getElementById("surname").value;
+    students[index].age = document.getElementById("age").value;
+    students[index].course = document.getElementById("course").value;
+    students[index].faculty = document.getElementById("faculty").value;
+    students[index].subjects = document
+      .getElementById("subjects")
+      .value.split(",");
+    saveStudentsToFile();
+    displayStudents();
+    studentForm.onsubmit = null;
+    studentForm.reset();
+  }
+
+  function deleteStudent(index) {
+    students.splice(index, 1);
+    saveStudentsToFile();
+    displayStudents();
+  }
+
+  loadStudentsFromFile();
 });
