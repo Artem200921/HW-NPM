@@ -168,3 +168,23 @@ button:hover {
   background-color: green;
   color: white;
 }
+
+/* DZ 10 */
+
+.section{
+  width: 500px;
+  height: 500px;
+}
+
+.box{
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.target{
+  position: absolute;
+  background-color: blue;
+  width: 20px;
+  height: 20px;
+}

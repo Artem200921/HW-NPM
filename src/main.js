@@ -391,29 +391,29 @@
 
 // 1
 
-document.addEventListener("DOMContentLoaded", load);
-document.getElementById("add").addEventListener("click", add);
-function add() {
-  const taskText = document.getElementById("newTask").value;
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks.push({ text: taskText, done: false });
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  load();
-}
-function load() {
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  const taskList = document.getElementById("taskList");
-  taskList.innerHTML = "";
-  tasks.forEach((task, index) => {
-    const li = document.createElement("li");
-    li.classList.add("item");
-    li.textContent = task.text;
-    li.addEventListener("click", () => {
-      li.classList.toggle("active");
-    });
-    taskList.appendChild(li);
-  });
-}
+// document.addEventListener("DOMContentLoaded", load);
+// document.getElementById("add").addEventListener("click", add);
+// function add() {
+//   const taskText = document.getElementById("newTask").value;
+//   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+//   tasks.push({ text: taskText, done: false });
+//   localStorage.setItem("tasks", JSON.stringify(tasks));
+//   load();
+// }
+// function load() {
+//   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+//   const taskList = document.getElementById("taskList");
+//   taskList.innerHTML = "";
+//   tasks.forEach((task, index) => {
+//     const li = document.createElement("li");
+//     li.classList.add("item");
+//     li.textContent = task.text;
+//     li.addEventListener("click", () => {
+//       li.classList.toggle("active");
+//     });
+//     taskList.appendChild(li);
+//   });
+// }
 
 // 2
 
@@ -480,3 +480,62 @@ function load() {
 //     contactList.appendChild(li);
 //   });
 // }
+
+// DZ 10
+
+// 1
+
+// let count = 0;
+// const interval = setInterval(() => {
+//   if (count < 5) {
+//     document.getElementById("messageContainer").innerHTML += `<p>Повідомлення ${
+//       count + 1
+//     }</p>`;
+//     count++;
+//   } else {
+//     clearInterval(interval);
+//   }
+// }, 1000);
+
+// 2
+
+// const box1 = document.getElementById("box1");
+// const box2 = document.getElementById("box2");
+// let size = 50;
+// setInterval(() => {
+//   size += 10;
+//   box1.style.width = `${size}px`;
+//   box1.style.height = `${size}px`;
+//   box2.style.width = `${size}px`;
+//   box2.style.height = `${size}px`;
+// }, 1000);
+
+// 3
+
+// const target = document.getElementById("target");
+// const scoreDisplay = document.getElementById("score");
+// let score = 0;
+// target.addEventListener("click", () => {
+//   score++;
+//   scoreDisplay.textContent = score;
+//   moveTarget();
+// });
+// function moveTarget() {
+//   const x = Math.floor(Math.random() * 101);
+//   const y = Math.floor(Math.random() * 101);
+//   console.log(x, y)
+//   target.style.left = `${x}px`;
+//   target.style.top = `${y}px`;
+// }
+// setInterval(() => {
+//   moveTarget();
+// }, 1000);
+
+// 4
+
+document.getElementById("startTimerBtn").addEventListener("click", () => {
+  const time = parseInt(document.getElementById("timeInput").value) * 1000;
+  setTimeout(() => {
+    document.getElementById("timerMessage").textContent = "Час вийшов!";
+  }, time);
+});
