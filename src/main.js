@@ -246,102 +246,237 @@
 
 // DZ 8
 
-document.addEventListener("DOMContentLoaded", () => {
-  const studentForm = document.getElementById("studentForm");
-  const studentsList = document.getElementById("studentsList");
-  const students = [];
+// document.addEventListener("DOMContentLoaded", () => {
+//   const studentForm = document.getElementById("studentForm");
+//   const studentsList = document.getElementById("studentsList");
+//   const students = [];
 
-  studentForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+//   studentForm.addEventListener("submit", (e) => {
+//     e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const surname = document.getElementById("surname").value;
-    const age = document.getElementById("age").value;
-    const course = document.getElementById("course").value;
-    const faculty = document.getElementById("faculty").value;
-    const subjects = document.getElementById("subjects").value.split(",");
+//     const name = document.getElementById("name").value;
+//     const surname = document.getElementById("surname").value;
+//     const age = document.getElementById("age").value;
+//     const course = document.getElementById("course").value;
+//     const faculty = document.getElementById("faculty").value;
+//     const subjects = document.getElementById("subjects").value.split(",");
 
-    const student = { name, surname, age, course, faculty, subjects };
-    students.push(student);
-    saveStudentsToFile();
-    displayStudents();
-    studentForm.reset();
-  });
+//     const student = { name, surname, age, course, faculty, subjects };
+//     students.push(student);
+//     saveStudentsToFile();
+//     displayStudents();
+//     studentForm.reset();
+//   });
 
-  function saveStudentsToFile() {
-    localStorage.setItem("students", JSON.stringify(students));
-  }
+//   function saveStudentsToFile() {
+//     localStorage.setItem("students", JSON.stringify(students));
+//   }
 
-  function loadStudentsFromFile() {
-    const studentsJSON = localStorage.getItem("students");
-    if (studentsJSON) {
-      students.push(...JSON.parse(studentsJSON));
-      displayStudents();
-    }
-  }
+//   function loadStudentsFromFile() {
+//     const studentsJSON = localStorage.getItem("students");
+//     if (studentsJSON) {
+//       students.push(...JSON.parse(studentsJSON));
+//       displayStudents();
+//     }
+//   }
 
-  function displayStudents() {
-    studentsList.innerHTML = "";
-    students.forEach((student, index) => {
-      const listItem = document.createElement("li");
-      const studentInfo = document.createElement("div");
-      studentInfo.textContent = `${student.name} ${student.surname}, ${
-        student.age
-      } років, курс: ${student.course}, факультет: ${
-        student.faculty
-      }, курси: ${student.subjects.join(", ")}`;
-      listItem.appendChild(studentInfo);
+//   function displayStudents() {
+//     studentsList.innerHTML = "";
+//     students.forEach((student, index) => {
+//       const listItem = document.createElement("li");
+//       const studentInfo = document.createElement("div");
+//       studentInfo.textContent = `${student.name} ${student.surname}, ${
+//         student.age
+//       } років, курс: ${student.course}, факультет: ${
+//         student.faculty
+//       }, курси: ${student.subjects.join(", ")}`;
+//       listItem.appendChild(studentInfo);
 
-      const editButton = document.createElement("button");
-      editButton.className = "edit";
-      editButton.textContent = "Редагувати";
-      editButton.onclick = () => editStudent(index);
-      listItem.appendChild(editButton);
+//       const editButton = document.createElement("button");
+//       editButton.className = "edit";
+//       editButton.textContent = "Редагувати";
+//       editButton.onclick = () => editStudent(index);
+//       listItem.appendChild(editButton);
 
-      const deleteButton = document.createElement("button");
-      deleteButton.className = "delete";
-      deleteButton.textContent = "Видалити";
-      deleteButton.onclick = () => deleteStudent(index);
-      listItem.appendChild(deleteButton);
+//       const deleteButton = document.createElement("button");
+//       deleteButton.className = "delete";
+//       deleteButton.textContent = "Видалити";
+//       deleteButton.onclick = () => deleteStudent(index);
+//       listItem.appendChild(deleteButton);
 
-      studentsList.appendChild(listItem);
+//       studentsList.appendChild(listItem);
+//     });
+//   }
+
+//   function editStudent(index) {
+//     const student = students[index];
+//     document.getElementById("name").value = student.name;
+//     document.getElementById("surname").value = student.surname;
+//     document.getElementById("age").value = student.age;
+//     document.getElementById("course").value = student.course;
+//     document.getElementById("faculty").value = student.faculty;
+//     document.getElementById("subjects").value = student.subjects.join(", ");
+//     studentForm.onsubmit = (e) => {
+//       e.preventDefault();
+//       updateStudent(index);
+//     };
+//   }
+
+//   function updateStudent(index) {
+//     students[index].name = document.getElementById("name").value;
+//     students[index].surname = document.getElementById("surname").value;
+//     students[index].age = document.getElementById("age").value;
+//     students[index].course = document.getElementById("course").value;
+//     students[index].faculty = document.getElementById("faculty").value;
+//     students[index].subjects = document
+//       .getElementById("subjects")
+//       .value.split(",");
+//     saveStudentsToFile();
+//     displayStudents();
+//     studentForm.onsubmit = null;
+//     studentForm.reset();
+//   }
+
+//   function deleteStudent(index) {
+//     students.splice(index, 1);
+//     saveStudentsToFile();
+//     displayStudents();
+//   }
+
+//   loadStudentsFromFile();
+// });
+
+// DZ 9
+
+// import { save } from "./modules/storage.js";
+
+// const list = document.getElementById("list");
+// const button = document.getElementById("button");
+// const input = document.getElementById("input");
+// let array = [];
+
+// button.addEventListener("click", (e) => {
+//   console.log(e);
+//   if (e != "") {
+//     const inputValue = input.value;
+//     array.push(inputValue);
+//     // const email = event.currentTarget.value;
+//     const result = JSON.stringify(array);
+//     localStorage.setItem("text", result);
+//     console.log(localStorage.getItem("text"));
+//     let item = document.createElement("li");
+//     item.innerHTML = `<p class="input">${inputValue}</p> <input type="checkbox">`;
+//     item.classList.add("item");
+//     list.appendChild(item);
+//     console.log(array)
+//   }
+// });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const savedText = localStorage.getItem("text");
+//   let savedArray = savedText.split(/\s*;\s*/);
+//   console.log(savedText);
+//   if (savedText) {
+//     savedArray.forEach((element) => {
+//       let item = document.createElement("li");
+//       item.innerHTML = `<p class="input">${element.replace(
+//         /[^A-Za-z0-9\,]/g,
+//         ""
+//       )}</p> <input type="checkbox">`;
+//       item.classList.add("item");
+//       list.appendChild(item);
+//     });
+//   }
+// });
+
+// 1
+
+document.addEventListener("DOMContentLoaded", load);
+document.getElementById("add").addEventListener("click", add);
+function add() {
+  const taskText = document.getElementById("newTask").value;
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks.push({ text: taskText, done: false });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  load();
+}
+function load() {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const taskList = document.getElementById("taskList");
+  taskList.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.classList.add("item");
+    li.textContent = task.text;
+    li.addEventListener("click", () => {
+      li.classList.toggle("active");
     });
-  }
+    taskList.appendChild(li);
+  });
+}
 
-  function editStudent(index) {
-    const student = students[index];
-    document.getElementById("name").value = student.name;
-    document.getElementById("surname").value = student.surname;
-    document.getElementById("age").value = student.age;
-    document.getElementById("course").value = student.course;
-    document.getElementById("faculty").value = student.faculty;
-    document.getElementById("subjects").value = student.subjects.join(", ");
-    studentForm.onsubmit = (e) => {
-      e.preventDefault();
-      updateStudent(index);
-    };
-  }
+// 2
 
-  function updateStudent(index) {
-    students[index].name = document.getElementById("name").value;
-    students[index].surname = document.getElementById("surname").value;
-    students[index].age = document.getElementById("age").value;
-    students[index].course = document.getElementById("course").value;
-    students[index].faculty = document.getElementById("faculty").value;
-    students[index].subjects = document
-      .getElementById("subjects")
-      .value.split(",");
-    saveStudentsToFile();
-    displayStudents();
-    studentForm.onsubmit = null;
-    studentForm.reset();
-  }
+// document.addEventListener("DOMContentLoaded", load);
+// document.getElementById("save").addEventListener("click", save);
+// function save() {
+//   const input = document.getElementById("input").value;
+//   localStorage.setItem("inputData", input);
+//   load();
+// }
+// function load() {
+//   const input = localStorage.getItem("inputData") || "";
+//   document.getElementById("input").value = input;
+// }
 
-  function deleteStudent(index) {
-    students.splice(index, 1);
-    saveStudentsToFile();
-    displayStudents();
-  }
+// 3
 
-  loadStudentsFromFile();
-});
+// document.addEventListener("DOMContentLoaded", load);
+// document.getElementById("addBtn").addEventListener("click", add);
+// function add() {
+//   const linkText = document.getElementById("newLink").value;
+//   const links = JSON.parse(localStorage.getItem("links")) || [];
+//   links.push(linkText);
+//   localStorage.setItem("links", JSON.stringify(links));
+//   load();
+// }
+// function load() {
+//   const links = JSON.parse(localStorage.getItem("links")) || [];
+//   const linkList = document.getElementById("linkList");
+//   linkList.innerHTML = "";
+//   let num = 1
+//   links.forEach((link, index) => {
+//     const li = document.createElement("li");
+//     const a = document.createElement("a");
+//     a.textContent = `link ${num ++}`;
+//     a.href = link;
+//     a.target = "_blank";
+//     linkList.appendChild(li);
+//     li.appendChild(a);
+//   });
+// }
+
+// 4
+
+// document.addEventListener("DOMContentLoaded", load);
+// document.getElementById("addBtn").addEventListener("click", add);
+// function add() {
+//   const name = document.getElementById("newContactName").value;
+//   const surname = document.getElementById("newContactSurname").value;
+//   const phone = document.getElementById("newContactPhone").value;
+//   const email = document.getElementById("newContactEmail").value;
+//   const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+//   contacts.push({ name, surname, phone, email });
+//   localStorage.setItem("contacts", JSON.stringify(contacts));
+//   load();
+// }
+// function load() {
+//   const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+//   const contactList = document.getElementById("contactList");
+//   contactList.innerHTML = "";
+//   contacts.forEach((contact, index) => {
+//     const li = document.createElement("li");
+//     li.textContent = `${contact.name} ${contact.surname} - ${contact.phone} - ${contact.email}`;
+//     contactList.appendChild(li);
+//   });
+// }
