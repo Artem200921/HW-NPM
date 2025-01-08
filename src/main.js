@@ -533,9 +533,59 @@
 
 // 4
 
-document.getElementById("startTimerBtn").addEventListener("click", () => {
-  const time = parseInt(document.getElementById("timeInput").value) * 1000;
-  setTimeout(() => {
-    document.getElementById("timerMessage").textContent = "Час вийшов!";
-  }, time);
-});
+// document.getElementById("startTimerBtn").addEventListener("click", () => {
+//   const time = parseInt(document.getElementById("timeInput").value) * 1000;
+//   setTimeout(() => {
+//     document.getElementById("timerMessage").textContent = "Час вийшов!";
+//   }, time);
+// });
+
+// DZ 11
+
+// 1
+
+// let timer1Duration = 3600;
+// const timer1Elem = document.getElementById("timer1");
+// const timer1Interval = setInterval(() => {
+//   timer1Duration--;
+//   const hours = Math.floor(timer1Duration / 3600);
+//   const minutes = Math.floor((timer1Duration % 3600) / 60);
+//   const seconds = timer1Duration % 60;
+//   timer1Elem.textContent = `${hours}:${minutes
+//     .toString()
+//     .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+//   if (timer1Duration === 1800) {
+//     alert("Залишилось менше половини часу");
+//   }
+//   if (timer1Duration <= 0) {
+//     clearInterval(timer1Interval);
+//   }
+// }, 1000);
+
+// 2
+
+const timer2Elem = document.getElementById("timer2");
+const startTimer2Btn = document.getElementById("startTimer2Btn");
+const animationDiv = document.getElementById("animation");
+startTimer2Btn.addEventListener("click", startTimer2);
+function startTimer2() {
+  let timer2Duration = 30000;
+  startTimer2Btn.disabled = true;
+  const timer2Interval = setInterval(() => {
+    timer2Duration -= 1;
+    const seconds = Math.floor(timer2Duration / 1000);
+    const milliseconds = timer2Duration % 1000;
+    timer2Elem.textContent = `${seconds}.${milliseconds
+      .toString()
+      .padStart(3, "0")}`;
+    if (timer2Duration <= 10000) {
+      animationDiv.classList.replace("hidden", "visible");
+    }
+    if (timer2Duration <= 0) {
+      clearInterval(timer2Interval);
+      animationDiv.classList.replace("visible", "hidden");
+      startTimer2Btn.disabled = false;
+      alert("Час вийшов!");
+    }
+  }, 1);
+}
