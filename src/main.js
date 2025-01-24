@@ -564,28 +564,69 @@
 
 // 2
 
-const timer2Elem = document.getElementById("timer2");
-const startTimer2Btn = document.getElementById("startTimer2Btn");
-const animationDiv = document.getElementById("animation");
-startTimer2Btn.addEventListener("click", startTimer2);
-function startTimer2() {
-  let timer2Duration = 30000;
-  startTimer2Btn.disabled = true;
-  const timer2Interval = setInterval(() => {
-    timer2Duration -= 1;
-    const seconds = Math.floor(timer2Duration / 1000);
-    const milliseconds = timer2Duration % 1000;
-    timer2Elem.textContent = `${seconds}.${milliseconds
-      .toString()
-      .padStart(3, "0")}`;
-    if (timer2Duration <= 10000) {
-      animationDiv.classList.replace("hidden", "visible");
-    }
-    if (timer2Duration <= 0) {
-      clearInterval(timer2Interval);
-      animationDiv.classList.replace("visible", "hidden");
-      startTimer2Btn.disabled = false;
-      alert("Час вийшов!");
-    }
-  }, 1);
+// const timer2Elem = document.getElementById("timer2");
+// const startTimer2Btn = document.getElementById("startTimer2Btn");
+// const animationDiv = document.getElementById("animation");
+// startTimer2Btn.addEventListener("click", startTimer2);
+// function startTimer2() {
+//   let timer2Duration = 30000;
+//   startTimer2Btn.disabled = true;
+//   const timer2Interval = setInterval(() => {
+//     timer2Duration -= 1;
+//     const seconds = Math.floor(timer2Duration / 1000);
+//     const milliseconds = timer2Duration % 1000;
+//     timer2Elem.textContent = `${seconds}.${milliseconds
+//       .toString()
+//       .padStart(3, "0")}`;
+//     if (timer2Duration <= 10000) {
+//       animationDiv.classList.replace("hidden", "visible");
+//     }
+//     if (timer2Duration <= 0) {
+//       clearInterval(timer2Interval);
+//       animationDiv.classList.replace("visible", "hidden");
+//       startTimer2Btn.disabled = false;
+//       alert("Час вийшов!");
+//     }
+//   }, 1);
+// }
+
+// DZ 12
+
+class timer {
+  constructor({ s, target }) {
+    this.s = s;
+    this.target = target;
+    this.refs = {
+      days: document.querySelector(`${s} [data-value="days"]`),
+      hours: document.querySelector(`${s} [data-value="hours"]`),
+      mins: document.querySelector(`${s} [data-value="mins"]`),
+      secs: document.querySelector(`${s} [data-value="secs"]`),
+    };
+    this.start();
+  }
+
+  start() {
+    this.updat();
+    setInterval(() => {
+      this.updat();
+    }, 1000);
+  }
+
+  updat() {
+    const time = this.target - new Date();
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((time % (1000 * 60)) / 1000);
+
+    this.refs.days.textContent = days;
+    this.refs.hours.textContent = hours;
+    this.refs.mins.textContent = mins;
+    this.refs.secs.textContent = secs;
+  }
 }
+
+new timer({
+  s: "#timer-1",
+  target: new Date("Jul 17, 2019"),
+});
