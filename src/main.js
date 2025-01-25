@@ -592,7 +592,7 @@
 
 // DZ 12
 
-class timer {
+class countdown {
   constructor({ s, target }) {
     this.s = s;
     this.target = target;
@@ -626,7 +626,7 @@ class timer {
   }
 }
 
-new timer({
+new countdown({
   s: "#timer-1",
   target: new Date("Jul 17, 2019"),
 });
