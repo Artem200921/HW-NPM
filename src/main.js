@@ -592,41 +592,121 @@
 
 // DZ 12
 
-class countdown {
-  constructor({ s, target }) {
-    this.s = s;
-    this.target = target;
-    this.refs = {
-      days: document.querySelector(`${s} [data-value="days"]`),
-      hours: document.querySelector(`${s} [data-value="hours"]`),
-      mins: document.querySelector(`${s} [data-value="mins"]`),
-      secs: document.querySelector(`${s} [data-value="secs"]`),
-    };
-    this.start();
-  }
+// class countdown {
+//   constructor({ s, target }) {
+//     this.s = s;
+//     this.target = target;
+//     this.refs = {
+//       days: document.querySelector(`${s} [data-value="days"]`),
+//       hours: document.querySelector(`${s} [data-value="hours"]`),
+//       mins: document.querySelector(`${s} [data-value="mins"]`),
+//       secs: document.querySelector(`${s} [data-value="secs"]`),
+//     };
+//     this.start();
+//   }
 
-  start() {
-    this.updat();
-    setInterval(() => {
-      this.updat();
-    }, 1000);
-  }
+//   start() {
+//     this.updat();
+//     setInterval(() => {
+//       this.updat();
+//     }, 1000);
+//   }
 
-  updat() {
-    const time = this.target - new Date();
-    const days = Math.floor(time / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((time % (1000 * 60)) / 1000);
+//   updat() {
+//     const time = this.target - new Date();
+//     const days = Math.floor(time / (1000 * 60 * 60 * 24));
+//     const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//     const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+//     const secs = Math.floor((time % (1000 * 60)) / 1000);
 
-    this.refs.days.textContent = days;
-    this.refs.hours.textContent = hours;
-    this.refs.mins.textContent = mins;
-    this.refs.secs.textContent = secs;
-  }
-}
+//     this.refs.days.textContent = days;
+//     this.refs.hours.textContent = hours;
+//     this.refs.mins.textContent = mins;
+//     this.refs.secs.textContent = secs;
+//   }
+// }
 
-new countdown({
-  s: "#timer-1",
-  target: new Date("Jul 17, 2019"),
-});
+// new countdown({
+//   s: "#timer-1",
+//   target: new Date("Jul 17, 2019"),
+// });
+
+// DZ 13
+
+// 1
+
+// const delay = (ms, value) => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(value);
+//     }, ms);
+//   });
+// };
+
+// const logger = (time) => console.log(`Resolved after ${time}ms`);
+
+// delay(2000, 2).then(logger);
+// delay(1000, 1).then(logger);
+// delay(1500, 1.5).then(logger);
+
+// 2
+
+// const users = [
+//   { name: "Mango", active: true },
+//   { name: "Poly", active: false },
+//   { name: "Ajax", active: true },
+//   { name: "Lux", active: false },
+// ];
+
+// const toggleUserState = (allUsers, userName) => {
+//   return new Promise((resolve) => {
+//     const updatedUsers = allUsers.map((user) =>
+//       user.name === userName ? { ...user, active: !user.active } : user
+//     );
+//     resolve(updatedUsers);
+//   });
+// };
+
+// const logger = (updatedUsers) => console.table(updatedUsers);
+
+// toggleUserState(users, "Mango").then(logger);
+// toggleUserState(users, "Lux").then(logger);
+
+// 3
+
+const randomTr = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const make = (transaction) => {
+  return new Promise((resolve, reject) => {
+    const delay = randomTr(200, 500);
+
+    setTimeout(() => {
+      const canProcess = Math.random() > 0.3;
+
+      if (canProcess) {
+        resolve({ id: transaction.id, time: delay });
+      } else {
+        reject(transaction.id);
+      }
+    }, delay);
+  });
+};
+
+const success = ({ id, time }) => {
+  console.log(`Transaction ${id} processed in ${time}ms`);
+};
+
+const error = (id) => {
+  console.warn(`Error processing transaction ${id}. Please try again later.`);
+};
+
+make({ id: 70, amount: 150 }).then(success).catch(error);
+make({ id: 71, amount: 230 }).then(success).catch(error);
+make({ id: 72, amount: 75 }).then(success).catch(error);
+make({ id: 73, amount: 100 }).then(success).catch(error);
+
+// DZ 13
+
+
