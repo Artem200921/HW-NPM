@@ -707,6 +707,6 @@ make({ id: 71, amount: 230 }).then(success).catch(error);
 make({ id: 72, amount: 75 }).then(success).catch(error);
 make({ id: 73, amount: 100 }).then(success).catch(error);
 
-// DZ 13
+// DZ 14
 
-
+// 1
