@@ -2,91 +2,85 @@
 
 // 1
 
-// import {
-//   alert,
-//   notice,
-//   info,
-//   success,
-//   error,
-// } from "@pnotify/core";
-// import "@pnotify/core/dist/BrightTheme.css";
+import { alert, notice, info, success, error } from "@pnotify/core";
+import "@pnotify/core/dist/BrightTheme.css";
 
-// const keys = {
-//   keyO: "Натисніть на O - щоб зробити класне фото",
-//   keyS: "Натисніть на S - щоб почати навчатись в нього",
-//   keyH: "Натисніть на H - щоб допомогти зібрати все для зілля",
-//   keyT: "Натисніть на T - щоб зібрати все для зілля",
-//   keyP: "Натисніть на P - щоб допомогти зробити зілля",
-//   keyG: "Натисніть на G - щоб забрати зілля",
-//   keyC: "Натисніть на C - щоб вкрасти чарівну палочку...",
-//   keyFinish:
-//     "Ви дуже погано закінчили знайомство... Красти погано... Натисніть Enter якщо ви хочете почати знову!",
-// };
+const keys = {
+  keyO: "Натисніть на O - щоб зробити класне фото",
+  keyS: "Натисніть на S - щоб почати навчатись в нього",
+  keyH: "Натисніть на H - щоб допомогти зібрати все для зілля",
+  keyT: "Натисніть на T - щоб зібрати все для зілля",
+  keyP: "Натисніть на P - щоб допомогти зробити зілля",
+  keyG: "Натисніть на G - щоб забрати зілля",
+  keyC: "Натисніть на C - щоб вкрасти чарівну палочку...",
+  keyFinish:
+    "Ви дуже погано закінчили знайомство... Красти погано... Натисніть Enter якщо ви хочете почати знову!",
+};
 
-// const keyHtm = document.getElementById("key");
+const keyHtm = document.getElementById("key");
 
-// document.addEventListener("keydown", (event) => {
-//   switch (event.key) {
-//     case "l":
-//       success({
-//         text: "Ви поговорили з котиком та стали друзями!",
-//       });
-//       keyHtm.innerHTML = keys.keyO;
-//       break;
-//     case "o":
-//       success({
-//         text: "Ви сфотографувалися з котиком, тепер у вас є класне фото з котиком!",
-//       });
-//       keyHtm.innerHTML = keys.keyS;
-//       break;
-//     case "s":
-//       success({
-//         text: "Ви почали навчання і у вас все вийшло!",
-//       });
-//       keyHtm.innerHTML = keys.keyH;
-//       break;
-//     case "h":
-//       success({
-//         text: "Ви вдвох почали збирати!",
-//       });
-//       keyHtm.innerHTML = keys.keyT;
-//       break;
-//     case "t":
-//       success({
-//         text: "Ви все зібрали!",
-//       });
-//       keyHtm.innerHTML = keys.keyP;
-//       break;
-//     case "p":
-//       success({
-//         text: "Ви разом зварили зілля!",
-//       });
-//       keyHtm.innerHTML = keys.keyG;
-//       break;
-//     case "g":
-//       success({
-//         text: "Ви взяли зілля!",
-//       });
-//       keyHtm.innerHTML = keys.keyC;
-//       break;
-//     case "c":
-//       success({
-//         text: "Навіщо ви вкрали палочку у котика?...",
-//       });
-//       keyHtm.innerHTML = keys.keyFinish;
-//       break;
-//     case "Enter":
-//       success({
-//         text: "Починаємо!",
-//       });
-//       keyHtm.innerHTML = "Натисніть на L - щоб підійти та почати розмову";
-//       break;
-//     default:
-//       error({
-//         text: "Ви натиснули неправильну клавішу",
-//       });
-//   }
-// });
+document.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    case "l":
+      success({
+        text: "Ви поговорили з котиком та стали друзями!",
+      });
+      keyHtm.innerHTML = keys.keyO;
+      break;
+    case "o":
+      success({
+        text: "Ви сфотографувалися з котиком, тепер у вас є класне фото з котиком!",
+      });
+      keyHtm.innerHTML = keys.keyS;
+      break;
+    case "s":
+      success({
+        text: "Ви почали навчання і у вас все вийшло!",
+      });
+      keyHtm.innerHTML = keys.keyH;
+      break;
+    case "h":
+      success({
+        text: "Ви вдвох почали збирати!",
+      });
+      keyHtm.innerHTML = keys.keyT;
+      break;
+    case "t":
+      success({
+        text: "Ви все зібрали!",
+      });
+      keyHtm.innerHTML = keys.keyP;
+      break;
+    case "p":
+      success({
+        text: "Ви разом зварили зілля!",
+      });
+      keyHtm.innerHTML = keys.keyG;
+      break;
+    case "g":
+      success({
+        text: "Ви взяли зілля!",
+      });
+      keyHtm.innerHTML = keys.keyC;
+      break;
+    case "c":
+      success({
+        text: "Навіщо ви вкрали палочку у котика?...",
+      });
+      keyHtm.innerHTML = keys.keyFinish;
+      break;
+    case "Enter":
+      success({
+        text: "Починаємо!",
+      });
+      keyHtm.innerHTML = "Натисніть на L - щоб підійти та почати розмову";
+      break;
+    default:
+      error({
+        text: "Ви натиснули неправильну клавішу",
+      });
+  }
+});
 
 // 2
 
@@ -674,39 +668,91 @@
 
 // 3
 
-const randomTr = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+// const randomTr = (min, max) => {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// };
 
-const make = (transaction) => {
-  return new Promise((resolve, reject) => {
-    const delay = randomTr(200, 500);
+// const make = (transaction) => {
+//   return new Promise((resolve, reject) => {
+//     const delay = randomTr(200, 500);
 
-    setTimeout(() => {
-      const canProcess = Math.random() > 0.3;
+//     setTimeout(() => {
+//       const canProcess = Math.random() > 0.3;
 
-      if (canProcess) {
-        resolve({ id: transaction.id, time: delay });
-      } else {
-        reject(transaction.id);
-      }
-    }, delay);
-  });
-};
+//       if (canProcess) {
+//         resolve({ id: transaction.id, time: delay });
+//       } else {
+//         reject(transaction.id);
+//       }
+//     }, delay);
+//   });
+// };
 
-const success = ({ id, time }) => {
-  console.log(`Transaction ${id} processed in ${time}ms`);
-};
+// const success = ({ id, time }) => {
+//   console.log(`Transaction ${id} processed in ${time}ms`);
+// };
 
-const error = (id) => {
-  console.warn(`Error processing transaction ${id}. Please try again later.`);
-};
+// const error = (id) => {
+//   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
 
-make({ id: 70, amount: 150 }).then(success).catch(error);
-make({ id: 71, amount: 230 }).then(success).catch(error);
-make({ id: 72, amount: 75 }).then(success).catch(error);
-make({ id: 73, amount: 100 }).then(success).catch(error);
+// make({ id: 70, amount: 150 }).then(success).catch(error);
+// make({ id: 71, amount: 230 }).then(success).catch(error);
+// make({ id: 72, amount: 75 }).then(success).catch(error);
+// make({ id: 73, amount: 100 }).then(success).catch(error);
 
 // DZ 14
 
 // 1
+
+// function delayedPromise(value, delay) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(value);
+//     }, delay);
+//   });
+// }
+
+// const promises = [
+//   delayedPromise("First", 1000),
+//   delayedPromise("Second", 3000),
+//   delayedPromise("Third", 4500),
+//   delayedPromise("Fourth", 5500),
+//   delayedPromise("Fifth", 500),
+// ];
+
+// promises.forEach((promise) => {
+//   promise.then((results) => {
+//     console.log("Results:", results);
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//   });
+// })
+
+// 2
+
+function randomDelay(value) {
+    const delay = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(value);
+        }, delay);
+    });
+}
+
+const racePromises = [
+    randomDelay("First"),
+    randomDelay("Second"),
+    randomDelay("Third"),
+    randomDelay("Fourth"),
+    randomDelay("Fifth")
+];
+
+Promise.race(racePromises)
+    .then((result) => {
+        console.log("Fastest result:", result);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
